@@ -129,7 +129,10 @@ include_directories(${vtkPVServerManagerApplication_DEPENDS_INCLUDE_DIRS}
 
 set(STATIC_LINK_PLUGINS)
 if (NOT BUILD_SHARED_LIBS)
-  set(STATIC_LINK_PLUGINS vtkPVStaticPluginsInit)
+  set(STATIC_LINK_PLUGINS vtkPVStaticPluginsInit util)
+endif()
+if (PARAVIEW_USE_STATIC_NUMPY)
+  list(APPEND STATIC_LINK_PLUGINS "${PYTHON_LIBRARY}" "${STATIC_NUMPY_LIBRARY}" blas gsl gslcblas lapack)
 endif()
 
 foreach (name pvserver pvdataserver pvrenderserver)
