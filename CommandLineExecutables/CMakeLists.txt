@@ -132,7 +132,35 @@ if (NOT BUILD_SHARED_LIBS)
   set(STATIC_LINK_PLUGINS vtkPVStaticPluginsInit util)
 endif()
 if (PARAVIEW_USE_STATIC_NUMPY)
-  list(APPEND STATIC_LINK_PLUGINS "${PYTHON_LIBRARY}" "${STATIC_NUMPY_LIBRARY}" blas gsl gslcblas lapack)
+  find_library(UTIL_LIB util)
+  find_library(SSL_LIB ssl)
+  find_library(CRYPTO_LIB crypto)
+
+  set(extra_python_libs)
+  foreach (lib "${UTIL_LIB}" "${SSL_LIB}" "${CRYPTO_LIB}")
+    if (lib)
+      list(APPEND extra_python_libs
+        "${lib}")
+    endif ()
+  endforeach ()
+
+  find_library(BLAS_LIB blas)
+  find_library(GSL_LIB gsl)
+  find_library(GSLCBLAS_LIB gslcblas)
+  find_library(LAPACK_LIB lapack)
+
+  set(extra_numpy_libs)
+  foreach (libvar BLAS_LIB GSL_LIB GSLCBLAS_LIB LAPACK_LIB)
+    if (${libvar})
+      list(APPEND extra_numpy_libs
+        "${${libvar}}")
+      add_definitions(-DHAVE_NUMPY_${libvar})
+    endif ()
+  endforeach ()
+
+  list(APPEND STATIC_LINK_PLUGINS
+    ${extra_python_libs} "${PYTHON_LIBRARY}"
+    ${extra_numpy_libs} "${STATIC_NUMPY_LIBRARY}")
 endif()
 
 foreach (name pvserver pvdataserver pvrenderserver)
