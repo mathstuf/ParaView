@@ -133,11 +133,9 @@ if (NOT BUILD_SHARED_LIBS)
 endif()
 if (PARAVIEW_USE_STATIC_NUMPY)
   find_library(UTIL_LIB util)
-  find_library(SSL_LIB ssl)
-  find_library(CRYPTO_LIB crypto)
 
   set(extra_python_libs)
-  foreach (lib "${UTIL_LIB}" "${SSL_LIB}" "${CRYPTO_LIB}")
+  foreach (lib "${UTIL_LIB}")
     if (lib)
       list(APPEND extra_python_libs
         "${lib}")
