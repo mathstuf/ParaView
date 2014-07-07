@@ -20,6 +20,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include "vtkPython.h"
 #endif
 
+#ifdef HAVE_NUMPY_STATIC
 extern "C" void initmultiarray(void);
 extern "C" void initscalarmath(void);
 extern "C" void initumath(void);
@@ -48,10 +49,13 @@ static void paraview_import_static_modules()
   PyImport_AppendInittab("numpy.numarray._capi", init_capi);
   PyImport_AppendInittab("numpy.random.mtrand", initmtrand);
 }
+#endif
 
 int main(int argc, char* argv[])
 {
+#ifdef HAVE_NUMPY_STATIC
   paraview_import_static_modules();
+#endif
 #ifndef BUILD_SHARED_LIBS
   paraview_static_plugins_init();
 #endif

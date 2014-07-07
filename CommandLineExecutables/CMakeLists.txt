@@ -157,6 +157,7 @@ if (PARAVIEW_USE_STATIC_NUMPY)
       add_definitions(-DHAVE_NUMPY_${libvar})
     endif ()
   endforeach ()
+  add_definitions(-DHAVE_NUMPY_STATIC)
 
   list(APPEND STATIC_LINK_PLUGINS
     ${extra_python_libs} "${PYTHON_LIBRARY}"
