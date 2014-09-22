@@ -1088,7 +1088,7 @@ void vtkNIfTIReader::ExecuteDataWithInformation(vtkDataObject *output, vtkInform
       }
     }
 
-  delete tempUnsignedCharData;
+  delete [] tempUnsignedCharData;
   tempUnsignedCharData = NULL;
 }
 
