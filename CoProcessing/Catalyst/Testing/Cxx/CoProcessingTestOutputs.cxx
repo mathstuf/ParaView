@@ -54,7 +54,7 @@ namespace
         cerr << "CoProcessingTestOutputs.cxx: number of outputs was "
              << this->OutputCounter << " but the number should have been "
              << this->ExpectedOutputCounter << endl;
-        throw 1;
+        abort();
         }
     }
     // We have two input data sets and we have an frequency for
