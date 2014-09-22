@@ -99,7 +99,7 @@ public:
 
   // Description:
   // return the name of the provided userId
-  virtual const char* GetUserLabel(int userID);
+  virtual std::string GetUserLabel(int userID);
 
   // Description:
   // Update ou local user name

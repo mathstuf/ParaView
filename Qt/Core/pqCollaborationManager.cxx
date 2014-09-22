@@ -250,7 +250,7 @@ void pqCollaborationManager::onClientMessage(pqServer* server, vtkSMMessage* msg
       {
       case QtEvent::CHAT:
         userId = msg->GetExtension(ChatMessage::author);
-        userName = server->session()->GetCollaborationManager()->GetUserLabel(userId);
+        userName = QString::fromStdString(server->session()->GetCollaborationManager()->GetUserLabel(userId));
         chatMsg =  msg->GetExtension(ChatMessage::txt).c_str();
         emit triggerChatMessage(server, userId, chatMsg);
         break;

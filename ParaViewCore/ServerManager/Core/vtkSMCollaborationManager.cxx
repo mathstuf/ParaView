@@ -66,14 +66,14 @@ public:
         &vtkSMCollaborationManager::vtkInternal::StopProcessingRemoteNotificationCallback );
     }
 
-  const char* GetUserName(int userId)
+  std::string GetUserName(int userId)
     {
     std::string &name = this->UserNames[userId];
     if(name.empty())
       {
 
       }
-    return name.c_str();
+    return name;
     }
 
   bool UpdateMaster(int newMaster)
@@ -381,7 +381,7 @@ int vtkSMCollaborationManager::GetUserId(int index)
   return this->Internal->Users[index];
 }
 //----------------------------------------------------------------------------
-const char* vtkSMCollaborationManager::GetUserLabel(int userID)
+std::string vtkSMCollaborationManager::GetUserLabel(int userID)
 {
   return this->Internal->GetUserName(userID);
 }

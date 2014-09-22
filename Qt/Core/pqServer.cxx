@@ -412,7 +412,7 @@ void pqServer::onCollaborationCommunication(vtkObject* vtkNotUsed(src),
     {
     case vtkSMCollaborationManager::UpdateUserName:
       userId = *reinterpret_cast<int*>(data);
-      userName = this->Internals->CollaborationCommunicator->GetUserLabel(userId);
+      userName = QString::fromStdString(this->Internals->CollaborationCommunicator->GetUserLabel(userId));
       emit triggeredUserName(userId, userName);
       break;
     case vtkSMCollaborationManager::UpdateUserList:
