@@ -7267,8 +7267,10 @@ int * vtknifti1_io::nifti_get_intlist( int nvals , const char * str )
 
       if( str[ipos] == ',' || ISEND(str[ipos]) ){
          nout++ ;
+         int* oldsubv = subv;
          subv = (int *)realloc( (char *)subv , sizeof(int) * (nout+1) ) ;
          if( !subv ) {
+            free(oldsubv);
             fprintf(stderr,"** nifti_get_intlist: failed realloc of %d ints\n",
                     nout+1);
             return NULL;
@@ -7343,8 +7345,10 @@ int * vtknifti1_io::nifti_get_intlist( int nvals , const char * str )
 
       for( ii=ibot ; (ii-itop)*istep <= 0 ; ii += istep ){
          nout++ ;
+         int* oldsubv = subv;
          subv = (int *)realloc( (char *)subv , sizeof(int) * (nout+1) ) ;
          if( !subv ) {
+            free(oldsubv);
             fprintf(stderr,"** nifti_get_intlist: failed realloc of %d ints\n",
                     nout+1);
             return NULL;
