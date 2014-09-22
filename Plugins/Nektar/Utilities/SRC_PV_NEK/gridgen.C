@@ -109,7 +109,7 @@ static void WriteMesh(Element_List *U, FILE *out){
   int      qt,zone;
   double   *z,*w;
   Coord    X,Y;
-  char     *outformat,*Colour;
+  char     *outformat=NULL,*Colour;
   Element *E;
   int      dim = U->fhead->dim();
 

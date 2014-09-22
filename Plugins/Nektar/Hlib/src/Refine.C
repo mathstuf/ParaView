@@ -1090,7 +1090,7 @@ void Quad::split_element(Element_List *EL, Bndry **Ubc, int nfields, int *&flag)
 
   int *link_eid  = ivector(0, Nedges-1);
   int *link_face = ivector(0, Nedges-1);
-  Element ** new_E;
+  Element ** new_E = NULL;
   Element ** total_E;
   Coord origX, newX, centX, EcentX;
 
@@ -1936,7 +1936,7 @@ void Tri::close_split(Element_List *EL, Bndry **Ubc, int nfields, int *&flag){
   int i, j, k, nel = EL->nel;
   Coord origX, newX, centX;
   Element **total_E;
-  Element ** new_E;
+  Element ** new_E = NULL;
   int cnt = 0;
   int which_split;
   int min_eorder = 0;

@@ -534,7 +534,7 @@ void Substruct_Partition(Element_List *E, int nvs, int *npatch, int **elmtid,
 void Set_Parallel_Patch(int *partition){
   register int i,j;
   Patch *p,*p1;
-  int *n2o,*o2n,*xelmt,*elmtid,*old2new,cnt,npatch;
+  int *n2o,*o2n,*xelmt,*elmtid,*old2new = NULL,cnt,npatch;
   int *revmap;
   int active_handle = get_active_handle();
 
@@ -638,7 +638,7 @@ void Set_Parallel_Patch(int *partition){
 
 static Mlevelinfo *Mlevel_decom(Element_List *E, Bsystem *B, int *nlevel,
         int nrecur){
-  Mlevelinfo *ml;
+  Mlevelinfo *ml = NULL;
   Patch      *p,*p1;
   int active_handle = get_active_handle();
 

@@ -796,7 +796,7 @@ static void WriteVTK(Element_List **E, char *fname_vtk, int nfields, int Snapsho
 
   float *XYZ;
   float *UVWP, *Pres;
-  int *vert_ID_array;
+  int *vert_ID_array = NULL;
 
   int Nvert_total = 0;
   int Nelements_total = 0;
@@ -1035,7 +1035,7 @@ static void WriteS(Element_List **E, FILE *out, int nfields, int Snapshot_index)
 
   float *XYZUVWP,*XYZUVWP_all;
   //float *UVWP, *Pres;
-  int *vert_ID_array;
+  int *vert_ID_array = NULL;
 
   int Nvert_total = 0;
   int Nelements_total = 0;

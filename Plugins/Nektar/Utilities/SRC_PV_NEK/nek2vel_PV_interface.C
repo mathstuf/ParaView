@@ -1006,7 +1006,7 @@ void WriteVTK(Element_List **E, char *fname_vtk, int nfields, int Snapshot_index
 
   float *XYZ;
   float *UVWP, *Pres;
-  int *vert_ID_array;
+  int *vert_ID_array = NULL;
 
   int Nvert_total = 0;
   int Nelements_total = 0;
@@ -1248,7 +1248,7 @@ static void WriteS(Element_List **E, FILE *out, int nfields, int Snapshot_index)
 
   float *XYZUVWP,*XYZUVWP_all;
   //float *UVWP, *Pres;
-  int *vert_ID_array;
+  int *vert_ID_array = NULL;
 
   int Nvert_total = 0;
   int Nelements_total = 0;
@@ -1563,7 +1563,7 @@ static void WriteS(Element_List **E, FILE *out, int nfields, int Snapshot_index)
     /* gather vert_ID_array to VIZ_ROOT */
     int vert_ID_array_length_all = 0;
     int *vert_ID_array_len_per_core;
-    int *vert_ID_array_all;
+    int *vert_ID_array_all = NULL;
 
 
     vert_ID_array_len_per_core = new int[Ncores];
@@ -3598,7 +3598,7 @@ int write_vtk_file_XML(float *XYZ, float *UVWP, int *vert_ID_array, int Nverts, 
    vert_ID_array_len_per_core[0] = vert_ID_array_len;
 #endif
 
-    float *XYZ_all,*UVW_all, *Pres_all;
+    float *XYZ_all = NULL,*UVW_all = NULL, *Pres_all = NULL;
     int *vert_ID_array_all;
     int *displs, *recvcnt;
 
