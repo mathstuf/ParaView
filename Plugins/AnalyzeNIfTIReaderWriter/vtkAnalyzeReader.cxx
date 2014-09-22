@@ -1289,7 +1289,7 @@ int vtkAnalyzeReader::CanReadFile(const char* fname)
     }
 
   struct nifti_1_header m_hdr;
-  if( ! ReadBufferAsBinary( local_InputStream, (void *)&(m_hdr), sizeof(struct nifti_1_header) ) )
+  if( ! ReadBufferAsBinary( local_InputStream, &m_hdr, sizeof(struct nifti_1_header) ) )
     {
     return false;
     }
