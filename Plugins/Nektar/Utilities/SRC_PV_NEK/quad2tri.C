@@ -105,7 +105,7 @@ static void WriteBC(int i, int j, FILE *fp, FILE *out){
       fprintf(out,"%c %d %d %d %d\n",c,i+1,j+1,(int) (2*eid),(int) (side-2));
     break;
   case 'V': case 'O': case 'F':
-    sscanf(buf,"%*1s%d%d%lf%lf",v,v+1);
+    sscanf(buf,"%*1s%*d%*d%lf%lf",v,v+1);
     fprintf(out,"%c %d %d %d %d\n",c,i+1,j+1,v[0],v[1]);
     break;
   case 'v': case 'f':
