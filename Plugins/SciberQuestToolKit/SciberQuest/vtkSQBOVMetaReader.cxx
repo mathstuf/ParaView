@@ -761,6 +761,7 @@ int vtkSQBOVMetaReader::RequestData(
       {
       vtkErrorMacro("Failed to decompose domain.");
       output->Initialize();
+      iddecomp->Delete();
       return 1;
       }
     ddecomp=iddecomp;
@@ -851,6 +852,7 @@ int vtkSQBOVMetaReader::RequestData(
       {
       vtkErrorMacro("Failed to decompose domain.");
       output->Initialize();
+      rddecomp->Delete();
       return 1;
       }
     ddecomp=rddecomp;
