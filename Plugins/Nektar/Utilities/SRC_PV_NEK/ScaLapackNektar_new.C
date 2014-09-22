@@ -536,7 +536,7 @@ int get_block_size(int length, int Nproc){
   int i, blocksize = 1;
   int *BS;
 
-  BS = new int[9];
+  BS = new int[10];
 
   BS[0] = 1;   BS[1] = 2;
   BS[2] = 4;   BS[3] = 8;

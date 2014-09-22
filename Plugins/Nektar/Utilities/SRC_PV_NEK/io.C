@@ -79,7 +79,7 @@ static char *sections[] = {
 void ReadParams (FILE *fp)
 {
   int  n;
-  char buf[BUFSIZ], value[25], name[25], c;
+  char buf[BUFSIZ], value[26], name[26], c;
   double val, dt;
 
   static char *dspecial[] = { "KINVIS", "LAMBDA", "IOTIME", "KC", "LZ",
