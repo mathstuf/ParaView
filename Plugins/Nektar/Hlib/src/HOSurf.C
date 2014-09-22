@@ -128,6 +128,7 @@ void Load_HO_Surface(char *name){
   Loaded_Surf_File = 1;
 
   free(hr); free(hs); free(Rpts); free(Spts);
+  fclose(infile);
 }
 
 
