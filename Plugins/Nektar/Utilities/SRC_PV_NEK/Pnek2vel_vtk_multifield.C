@@ -1284,7 +1284,7 @@ static void WriteS(Element_List **E, FILE *out, int nfields, int Snapshot_index)
       vert_ID_array[k] -= 1;
 
     gsync();
-    fprintf(stderr,"rank = %d:: vert_ID_array - updated \n");
+    fprintf(stderr,"rank = %d:: vert_ID_array - updated \n",mynode());
 
     static FLAG_DUMP_INDEX = 0;
     char fname_vtk[BUFSIZ];

@@ -1376,7 +1376,7 @@ static void WriteS(Element_List **E, FILE *out, int nfields, int Snapshot_index)
 
 
     gsync();
-    fprintf(stderr,"rank = %d:: vert_ID_array - updated \n");
+    fprintf(stderr,"rank = %d:: vert_ID_array - updated \n", mynode());
 
 
     delete[] vert_ID_array;

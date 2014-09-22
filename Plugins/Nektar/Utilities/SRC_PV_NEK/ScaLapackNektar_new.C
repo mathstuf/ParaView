@@ -1270,13 +1270,13 @@ void scatter_vector(Bsystem *Bsys, double *v_block, double *v_local){
      if (GS_col_recvcntr[i] == 0) continue;
      info = MPI_Irecv(recvbuf[i], GS_col_recvcntr[i], MPI_DOUBLE,
                        i, i, MPI_COMM_COLUMN_NEW, recv_request[i]);
-      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",info);
+      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",mynode(),info);
    }
    for (i = BLACS_PARAMS[5]+1; i < BLACS_PARAMS[3]; i++){
      if (GS_col_recvcntr[i] == 0) continue;
      info = MPI_Irecv(recvbuf[i], GS_col_recvcntr[i], MPI_DOUBLE,
                        i, i, MPI_COMM_COLUMN_NEW, recv_request[i]);
-      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",info);
+      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",mynode(),info);
    }
 
 
@@ -1436,7 +1436,7 @@ void gather_vector(Bsystem *Bsys, double *v_global, double *work){
      nrecv++;
      info = MPI_Irecv(recvbuf[i], GS_row_recvcntr[i], MPI_DOUBLE,
                        i, i, MPI_COMM_ROW_NEW, &recv_request[i]);
-      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",info);
+      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",mynode(),info);
    }
 
    recv_request[BLACS_PARAMS[6]] = MPI_REQUEST_NULL;
@@ -1449,7 +1449,7 @@ void gather_vector(Bsystem *Bsys, double *v_global, double *work){
      nrecv++;
      info = MPI_Irecv(recvbuf[i], GS_row_recvcntr[i], MPI_DOUBLE,
                        i, i, MPI_COMM_ROW_NEW, &recv_request[i]);
-      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",info);
+      if (info != MPI_SUCCESS) fprintf (stderr, "rank %d: MPI_Irecv failed info = %d \n",mynode(),info);
    }
 
 
