@@ -154,8 +154,8 @@ size_t vtkPhastaReader::typeSize( const char typestring[] )
     }
   else
     {
-    delete [] ts1;
     fprintf(stderr,"unknown type : %s\n",ts1);
+    delete [] ts1;
     return 0;
     }
 }
