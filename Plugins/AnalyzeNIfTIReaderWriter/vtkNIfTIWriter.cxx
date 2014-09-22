@@ -838,7 +838,7 @@ void vtkNIfTIWriter::WriteFile(ofstream * vtkNotUsed(file), vtkImageData *data,
       }
     }
 
-  delete tempUnsignedCharData;
+  delete [] tempUnsignedCharData;
   tempUnsignedCharData = NULL;
 
   write_data = 1;
@@ -863,7 +863,7 @@ void vtkNIfTIWriter::WriteFile(ofstream * vtkNotUsed(file), vtkImageData *data,
     }
   if( ! leave_open ) vtkznzlib::znzclose(fp);
 
-  delete tempOutUnsignedCharData;
+  delete [] tempOutUnsignedCharData;
   tempOutUnsignedCharData = NULL;
   out_p = NULL;
 }
