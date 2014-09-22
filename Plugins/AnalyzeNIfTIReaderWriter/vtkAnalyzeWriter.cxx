@@ -40,9 +40,9 @@ vtkAnalyzeWriter::vtkAnalyzeWriter()
 
 vtkAnalyzeWriter::~vtkAnalyzeWriter()
 {
-  delete savedFlipAxis;
+  delete [] savedFlipAxis;
   savedFlipAxis = NULL;
-  delete savedInPlaceFilteredAxes;
+  delete [] savedInPlaceFilteredAxes;
   savedInPlaceFilteredAxes = NULL;
 }
 
