@@ -487,7 +487,7 @@ QList<QVariant> pqTransferFunctionEditor::freeformValues()
     {
     list.append(QVariant(static_cast<double> (opacities[i])));
     }
-  delete opacities;
+  delete [] opacities;
   return list;
 }
 
@@ -522,7 +522,7 @@ void pqTransferFunctionEditor::setFreeformValues(const QList<QVariant>& values)
 
   this->Internals->scribbleEditor->setRawOpacities(n, vals);
   this->Internals->scribbleEditor->blockSignals(false);
-  delete vals;
+  delete [] vals;
 }
 
 void pqTransferFunctionEditor::setGaussianControlPoints(const QList<QVariant>& values)
