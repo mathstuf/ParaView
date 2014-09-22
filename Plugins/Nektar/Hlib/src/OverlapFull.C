@@ -557,6 +557,7 @@ void GenPatchesFull(Element_List *U, Element_List *Uf, Bsystem *B){
 
   fprintf(stderr, "Done local A factorizations\n");
 
+  free(A);
 }
 
 void PreconFullOverlap(Bsystem *B, double *pin, double *zout){

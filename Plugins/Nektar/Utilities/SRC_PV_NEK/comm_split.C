@@ -75,6 +75,7 @@ void init_comm (int *argc, char **argv[])
     }
     color = get_my_color(mytid,num_of_subjobs,Ncpu_per_subjob);
 
+    delete [] Ncpu_per_subjob;
     fclose(pFile);
   }
 

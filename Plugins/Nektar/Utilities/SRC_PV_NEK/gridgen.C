@@ -261,6 +261,7 @@ static void WriteMesh(Element_List *U, FILE *out){
   if(bdy.N) dump_faces(out,U,X,zone);
 
   free(X.x); free(X.y);  free(X.z);
+  free(outformat);
 
 }
 

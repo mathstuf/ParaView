@@ -1028,6 +1028,7 @@ void Tri::split_element(Element_List *EL, Bndry **Ubc, int nfields, int *&flag){
   flag[4] = 2;
   flag[5] = EL->nel-2;
   flag[6] = 2;
+  free(new_E);
       }//end if
   }//end of switch statement
 
@@ -1863,6 +1864,7 @@ void Quad::split_element(Element_List *EL, Bndry **Ubc, int nfields, int *&flag)
     free(centX.x);  free(centX.y);
     free(EcentX.x);  free(EcentX.y);
   }//end switch statement
+  free(new_E);
   return;
 }
 
@@ -2695,6 +2697,8 @@ void Tri::close_split(Element_List *EL, Bndry **Ubc, int nfields, int *&flag){
   flag[6] = 2;
       }//end if
   }//end of switch statement
+
+  free(new_E);
 
   return;
 }//end of Closed_split member function

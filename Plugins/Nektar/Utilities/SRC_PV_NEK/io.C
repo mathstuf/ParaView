@@ -521,8 +521,8 @@ static void ReadCurve(FILE *fp, Element_List *new_E){
 
           fclose(DB_File);
 
-          delete[] label;
-          delete[] Fname;
+          free(label);
+          free(Fname);
 
 	  //fprintf(stderr, "io.C: else if(strstr(buf,Fre)||strstr(buf,fre)) EXIT\n");
         }

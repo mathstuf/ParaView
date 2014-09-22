@@ -250,6 +250,8 @@ do_main (int argc, char *argv[])
      }
   }
 
+  delete [] fieldID;
+  delete [] Time_all_steps;
 
  // exit_comm();
   
@@ -1612,6 +1614,8 @@ static void WriteS(Element_List **E, FILE *out, int nfields, int Snapshot_index)
      //fprintf(stderr,"rank = %d:: vert_ID_array - updated \n");
     
     delete[] vert_ID_array;
+    delete[] vert_ID_array_len_per_core;
+    delete[] vert_ID_array_all;
 
   }
   else{
@@ -3711,7 +3715,11 @@ int write_vtk_file_XML(float *XYZ, float *UVWP, int *vert_ID_array, int Nverts, 
     delete[] displs;
     delete[] recvcnt;
     delete[] vert_ID_array_len_per_core;
+    delete[] vert_ID_array_all;
     delete[] Nverts_per_core;
+    delete[] XYZ_all;
+    delete[] UVW_all;
+    delete[] Pres_all;
    
     if (MyRank != VIZ_ROOT)
       return -1;

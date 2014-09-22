@@ -906,6 +906,7 @@ void GenPatches(Element_List *U, Element_List *Uf, Bsystem *B){
     }
   }
 
+  free(A);
 
   fprintf(stderr, "Done local A factorizations\n");
 
