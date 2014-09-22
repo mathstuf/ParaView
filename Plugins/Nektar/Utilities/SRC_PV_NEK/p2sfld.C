@@ -140,11 +140,16 @@ main (int argc, char *argv[]){
       sprintf(syscall,"cat %s %s.dat.0 ",f.out.name,fname);
 
       for(i = 1; i < nfiles; ++i){
-  if((hfld+i != ((Field* ) NULL)))
-    sprintf(syscall,"%s %s.dat.%d ",syscall,fname, i);
+  if((hfld+i != ((Field* ) NULL))){
+    char *savesyscall = strdup(syscall);
+    sprintf(syscall,"%s %s.dat.%d ",savesyscall,fname, i);
+    free(savesyscall);
+  }
       }
 
-      sprintf(syscall,"%s > %s.tmp",syscall,f.out.name);
+      char *savesyscall = strdup(syscall);
+      sprintf(syscall,"%s > %s.tmp",savesyscall,f.out.name);
+      free(savesyscall);
     }
     fprintf(stdout,"system call: %s\n",syscall);
     system(syscall);
@@ -160,7 +165,9 @@ main (int argc, char *argv[]){
     else{
       sprintf(syscall,"cat %s.dat.0 ",fname);
       for(i = 1; i < nfiles; ++i){
-  sprintf(syscall,"%s %s.dat.%d ",syscall,fname,i);
+  char *savesyscall = strdup(syscall);
+  sprintf(syscall,"%s %s.dat.%d ",savesyscall,fname,i);
+  free(savesyscall);
       }
     }
     system(syscall);

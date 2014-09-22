@@ -151,8 +151,11 @@ int generic_args (int argc, char *argv[], FileList *f)
     argc--;
   }
 
-  DO_PARALLEL
-    sprintf(fname,"%s.%d\n",fname,pllinfo.procid);
+  DO_PARALLEL {
+    char *savename = strdup(fname);
+    sprintf(fname,"%s.%d\n",savename,pllinfo.procid);
+    free(savename);
+  }
 
   if ((f->out.fp = fopen(fname,"w")) == (FILE*) NULL) {
     fprintf(stderr, "%s: unable to open the output file -- %s\n",
