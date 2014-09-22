@@ -1688,13 +1688,12 @@ int vtkPEnSightGoldBinaryReader::ReadVectorsPerNode(
       vtkFloatArray *localVectors = vtkFloatArray::New();
       localVectors->SetNumberOfComponents(3);
       localVectors->SetNumberOfTuples(this->GetPointIds(partId)->GetLocalNumberOfIds());
-      float *vec = new float[3];
+      float vec[3];
       for(i = 0; i < numPts; i++)
         {
         vectors->GetTupleValue(i,vec);
         this->InsertVariableComponent(localVectors,i,0, vec,partId,0,VECTOR_PER_NODE);
         }
-      delete vec;
       localVectors->SetName(description);
       output->GetPointData()->AddArray(localVectors);
       if (!output->GetPointData()->GetVectors())

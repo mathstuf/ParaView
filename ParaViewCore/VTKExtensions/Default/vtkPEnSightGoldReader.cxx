@@ -207,6 +207,9 @@ int vtkPEnSightGoldReader::ReadGeometryFile(const char* fileName, int timeStep,
     char *name = strdup(line);
     if (strncmp(line, "interface", 9) == 0)
       {
+      delete this->IS;
+      this->IS = NULL;
+      free(name);
       return 1; // ignore it and move on
       }
 
