@@ -1121,11 +1121,13 @@ Geom *Tri_gen_geofac(Tri *E, int id){
 
 Geom *Quad_gen_geofac(Quad *E, int id){
   double   xr,xs,yr,ys;
-  Geom    *G = (Geom *)malloc(sizeof(Geom));
+  Geom    *G;
   Vert    *v = E->vert;
 
   if(E->curve->type == T_Straight)
     return Quad_gen_curved_geofac(E,id);
+
+  G = (Geom *)malloc(sizeof(Geom));
 
   G->id = id;
   for(int i = 1; i < E->Nverts; ++i){

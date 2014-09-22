@@ -1156,11 +1156,13 @@ Bndry *ReadBCs (FILE *fp, Element *U)
  *                                                                          *
  * ------------------------------------------------------------------------ */
 Bndry *bsort(Bndry *bndry_list, int nbcs){
-  Bndry   **tmp  = (Bndry**) malloc( nbcs * sizeof(Bndry*) );
+  Bndry   **tmp;
   Bndry   *bedg  = bndry_list;
   register int i;
 
   if(!nbcs) return bndry_list;
+
+  tmp  = (Bndry**) malloc( nbcs * sizeof(Bndry*) );
 
   /* Copy the linked list into a regular array and sort it */
 
