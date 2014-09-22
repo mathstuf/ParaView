@@ -698,6 +698,7 @@ void vtkPhastaReader::ReadGeomFile(char* geomFileName,
   if(coordinates == NULL)
     {
     vtkErrorMacro(<<"Unable to allocate memory for nodal info");
+    closefile(&geomfile,"read");
     return;
     }
 
@@ -705,6 +706,8 @@ void vtkPhastaReader::ReadGeomFile(char* geomFileName,
   if(pos == NULL)
     {
     vtkErrorMacro(<<"Unable to allocate memory for nodal info");
+    closefile(&geomfile,"read");
+    delete [] coordinates;
     return;
     }
   
@@ -729,8 +732,11 @@ void vtkPhastaReader::ReadGeomFile(char* geomFileName,
         points->InsertNextPoint(coordinates);
         break;
       default:
-        vtkErrorMacro(<<"Unrecognized dimension in "<< geomFileName)
-          return;
+        vtkErrorMacro(<<"Unrecognized dimension in "<< geomFileName);
+        closefile(&geomfile,"read");
+        delete [] coordinates;
+        delete [] pos;
+        return;
       }
     }
 
@@ -755,6 +761,9 @@ void vtkPhastaReader::ReadGeomFile(char* geomFileName,
     if(connectivity == NULL)
       {
       vtkErrorMacro(<<"Unable to allocate memory for connectivity info");
+      closefile(&geomfile,"read");
+      delete [] coordinates;
+      delete [] pos;
       return;
       }
 
@@ -797,8 +806,9 @@ void vtkPhastaReader::ReadGeomFile(char* geomFileName,
 
           break;
         default:
-          vtkErrorMacro(<<"Unrecognized CELL_TYPE in "<< geomFileName)
-            return;
+          vtkErrorMacro(<<"Unrecognized CELL_TYPE in "<< geomFileName);
+          delete [] nodes;
+          goto cleanup;
         }
 
       /* insert the element */
@@ -810,8 +820,9 @@ void vtkPhastaReader::ReadGeomFile(char* geomFileName,
   firstVertexNo = firstVertexNo + num_nodes;
 
   // clean up
+cleanup:
   closefile(&geomfile,"read");
-  delete [] coordinates; 
+  delete [] coordinates;
   delete [] pos;
   delete [] connectivity;
 
