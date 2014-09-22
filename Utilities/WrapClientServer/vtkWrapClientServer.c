@@ -1249,6 +1249,7 @@ int main(int argc, char *argv[])
   getClassInfo(fileInfo,data,classData);
   output_InitFunction(fp,classData);
   free(classData);
+  fclose(fp);
 
   vtkParse_Free(fileInfo);
   return 0;
