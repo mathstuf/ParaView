@@ -833,7 +833,12 @@ static Patch *set_init_patch(Element_List *U){
     medg = isum(nel,list,1);
     xadj[i+1] = xadj[i]+medg;
 
+    int *oldadjncy = adjncy;
     adjncy = (int*) realloc(adjncy,xadj[i+1]*sizeof(int));
+    if (!adjncy){
+      free(oldadjncy);
+      return NULL;
+    }
     for(j = 0; j < nel; ++j)
       if(list[j]) adjncy[cnt++] = j;
   }
