@@ -3608,6 +3608,7 @@ nifti_image* vtknifti1_io::nifti_convert_nhdr2nim(nifti_1_header nhdr,
    doswap = need_nhdr_swap(nhdr.dim[0], nhdr.sizeof_hdr); /* swap data flag */
 
    if( doswap < 0 ){
+      free(nim);
       if( doswap == -1 ) ERREX("bad dim[0]") ;
       ERREX("bad sizeof_hdr") ;  /* else */
    }
@@ -3636,9 +3637,15 @@ nifti_image* vtknifti1_io::nifti_convert_nhdr2nim(nifti_1_header nhdr,
    if ( g_opts.debug > 2 ) disp_nifti_1_header("-d nhdr2nim : ", &nhdr);
 
    if( nhdr.datatype == DT_BINARY ||
-       nhdr.datatype == DT_UNKNOWN  )    ERREX("bad datatype") ;
+       nhdr.datatype == DT_UNKNOWN  ){
+      free(nim);
+      ERREX("bad datatype") ;
+   }
 
-   if( nhdr.dim[1] <= 0 )                ERREX("bad dim[1]") ;
+   if( nhdr.dim[1] <= 0 ){
+      free(nim);
+      ERREX("bad dim[1]") ;
+   }
 
    /* fix bad dim[] values in the defined dimension range */
    for( ii=2 ; ii <= nhdr.dim[0] ; ii++ )
@@ -3851,7 +3858,7 @@ nifti_image* vtknifti1_io::nifti_convert_nhdr2nim(nifti_1_header nhdr,
    /**- deal with file names if set */
    if (fname!=NULL) {
        nifti_set_filenames(nim,fname,0,0);
-       if (nim->iname==NULL)  { ERREX("bad filename"); }
+       if (nim->iname==NULL)  { free(nim); ERREX("bad filename"); }
    } else { 
      nim->fname = NULL;  
      nim->iname = NULL; 
