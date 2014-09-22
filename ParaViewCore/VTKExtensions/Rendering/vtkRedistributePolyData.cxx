@@ -575,6 +575,20 @@ int vtkRedistributePolyData::RequestData(vtkInformation* vtkNotUsed(request),
     }
 #endif
 
+  delete [] numPointsRec;
+  delete [] numPointsSend;
+
+  for (i=0; i<cntSend; i++)
+    {
+    delete [] cellArraySize[i];
+    }
+  delete [] cellArraySize;
+  for (i=0; i<cntRec; i++)
+    {
+    delete [] cellptCntr[i];
+    }
+  delete [] cellptCntr;
+
   return 1;
 }
 
