@@ -69,10 +69,6 @@ public:
   std::string GetUserName(int userId)
     {
     std::string &name = this->UserNames[userId];
-    if(name.empty())
-      {
-
-      }
     return name;
     }
 
