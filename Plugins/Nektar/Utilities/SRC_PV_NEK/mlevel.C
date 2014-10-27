@@ -836,6 +836,7 @@ static Patch *set_init_patch(Element_List *U){
     int *oldadjncy = adjncy;
     adjncy = (int*) realloc(adjncy,xadj[i+1]*sizeof(int));
     if (!adjncy){
+      free_ivector(list);
       free(oldadjncy);
       return NULL;
     }
@@ -844,7 +845,7 @@ static Patch *set_init_patch(Element_List *U){
   }
 
   p->adjncy = adjncy;
-  free(list);
+  free_ivector(list);
       }
     }
   }
