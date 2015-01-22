@@ -62,6 +62,8 @@ void vtkCPAdaptorAPI::CoProcessorInitialize()
     vtkCPAdaptorAPI::CoProcessorData = vtkCPDataDescription::New();
     vtkCPAdaptorAPI::CoProcessorData->AddInput("input");
     }
+
+  vtkDataObject::SetGlobalReleaseDataFlag(1);
 }
 
 //-----------------------------------------------------------------------------
