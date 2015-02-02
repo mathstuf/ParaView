@@ -28,9 +28,6 @@ vtkStandardNewMacro(vtkAnalyzeWriter);
 
 vtkAnalyzeWriter::vtkAnalyzeWriter()
 {
-  savedFlipAxis = new int[3];
-  savedInPlaceFilteredAxes = new int[3];
-
   this->FileLowerLeft = 1;
   this->FileType = 0;
   this->FileDimensionality = 3;
@@ -40,10 +37,6 @@ vtkAnalyzeWriter::vtkAnalyzeWriter()
 
 vtkAnalyzeWriter::~vtkAnalyzeWriter()
 {
-  delete [] savedFlipAxis;
-  savedFlipAxis = NULL;
-  delete [] savedInPlaceFilteredAxes;
-  savedInPlaceFilteredAxes = NULL;
 }
 
 
@@ -908,16 +901,13 @@ void vtkAnalyzeWriter::WriteFile(ofstream * vtkNotUsed(file), vtkImageData *data
     }
 
   if(foundNiftiHeader){
-    if ((savedFlipAxis)&&(savedInPlaceFilteredAxes)){
+    flipAxis[0] = savedFlipAxis[0];
+    flipAxis[1] = savedFlipAxis[1];
+    flipAxis[2] = savedFlipAxis[2];
 
-      flipAxis[0] = savedFlipAxis[0];
-      flipAxis[1] = savedFlipAxis[1];
-      flipAxis[2] = savedFlipAxis[2];
-
-      InPlaceFilteredAxes[0]=savedInPlaceFilteredAxes[0];
-      InPlaceFilteredAxes[1]=savedInPlaceFilteredAxes[1];
-      InPlaceFilteredAxes[2]=savedInPlaceFilteredAxes[2];
-      }
+    InPlaceFilteredAxes[0]=savedInPlaceFilteredAxes[0];
+    InPlaceFilteredAxes[1]=savedInPlaceFilteredAxes[1];
+    InPlaceFilteredAxes[2]=savedInPlaceFilteredAxes[2];
     }
 
   for (count=0;count<3;count++){

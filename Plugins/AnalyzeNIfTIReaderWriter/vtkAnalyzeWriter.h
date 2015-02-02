@@ -59,8 +59,8 @@ private:
   int imageDataType;
   bool foundAnalayzeHeader;
   bool foundNiftiHeader;
-  int * savedFlipAxis;
-  int * savedInPlaceFilteredAxes;
+  int savedFlipAxis[3];
+  int savedInPlaceFilteredAxes[3];
   bool fixFlipError;
 };
 
